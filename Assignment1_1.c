@@ -1,4 +1,4 @@
-#include <stdio.h>
+#include<stdio.h>
 
 struct Date
 {
@@ -10,65 +10,55 @@ struct Date
 void initDate(struct Date* ptrDate)
 {
     ptrDate->day = 1;
-    ptrDate->month = 6;
+    ptrDate->month = 1;
     ptrDate->year = 2000;
-}
-
-void acceptDateFromConsole(struct Date* ptrDate)
-{
-    printf("Day: ");
-    scanf("%d", &ptrDate->day);
-
-    printf("Month: ");
-    scanf("%d", &ptrDate->month);
-
-    printf("Year: ");
-    scanf("%d", &ptrDate->year);
 }
 
 void printDateOnConsole(struct Date* ptrDate)
 {
-    printf("Day : %d\n", ptrDate->day);
-    printf("Month : %d\n", ptrDate->month);
-    printf("Year : %d\n", ptrDate->year);
+    printf("Date : %d/%d/%d\n", ptrDate->day, ptrDate->month, ptrDate->year);
 }
 
-int menuList(void)
+void acceptDateFromConsole(struct Date* ptrDate)
 {
-    int choice;
+    printf("Day : ");
+    scanf("%d", &ptrDate->day);
 
-    printf("\n0. Exit\n");
-    printf("1. Accept Date\n");
-    printf("2. Print Date\n");
-    printf("Enter choice: ");
-    scanf("%d", &choice);
+    printf("Month : ");
+    scanf("%d", &ptrDate->month);
 
-    return choice;
+    printf("Year : ");
+    scanf("%d", &ptrDate->year);
 }
 
 int main()
 {
-    struct Date dt;
     int choice;
+    struct Date date;
 
-    initDate(&dt);
+    printf("1. Initialize Date\n");
+    printf("2. Accept Date\n");
+    printf("3. Print Date\n");
 
-    while ((choice = menuList()) != 0)
+    printf("Enter choice : ");
+    scanf("%d", &choice);
+
+    if(choice == 1)
     {
-        switch (choice)
-        {
-            case 1:
-                acceptDateFromConsole(&dt);
-                break;
-
-            case 2:
-                printDateOnConsole(&dt);
-                break;
-
-            default:
-                printf("Invalid choice!\n");
-                break;
-        }
+        initDate(&date);
+        printDateOnConsole(&date);
+    }
+    else if(choice == 2)
+    {
+        acceptDateFromConsole(&date);
+    }
+    else if(choice == 3)
+    {
+        printDateOnConsole(&date);
+    }
+    else
+    {
+        printf("Invalid choice");
     }
 
     return 0;
